@@ -3,14 +3,13 @@
     * V - view
     * C - controller
 
-V - widoki sa serwowane przez kontroler
-C - serwuje widoki/odbiera requesty
+V - widoki są serwowane przez kontroler
+C - serwuje widoki/odbiera request'y
 M - dane i operacje na nich
 
+Model = Service + Repository
 
-Mode = Service + Repository
-
-### Aplikacja webowa 
+### Aplikacja webowa
 View
 Controller
 Service
@@ -19,4 +18,3 @@ Repository
 ### Aplikacja standalone
 Service
 Repository
-
