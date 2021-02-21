@@ -12,6 +12,10 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
+    //TODO kolejnosc budowania aplikacji
+    // dtos
+    // exceptions
+    // baza entities
     private static final Logger logger = LoggerFactory.getLogger(BookController.class);
 
     private final BookService bookService;
