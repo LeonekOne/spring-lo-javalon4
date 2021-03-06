@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import pl.sda.javalondek4springdemo.model.Book;
-import pl.sda.javalondek4springdemo.service.MyService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +18,8 @@ public class BookRepository {
     public BookRepository() {
         List<Book> someBooks = List.of(
             new Book(1L, "Henryk Sienkiewicz", "Potop"),
-            new Book(2L, "Adam Mickiewicz", "Pan Tadeusz"),
-            new Book(3L, "Prus", "Lalka")
+            new Book(2L, "Henryk Sienkiewicz", "Pan Wołodyjowski"),
+            new Book(3L, "Henryk Sienkiewicz", "Quo Vadis")
         );
 
         this.books = new ArrayList<>(someBooks);
@@ -30,6 +29,7 @@ public class BookRepository {
 
 
     public List<Book> findAllBooks() {
+
         return books;
     }
 }

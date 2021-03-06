@@ -1,5 +1,6 @@
 package pl.sda.javalondek4springdemo.model;
 
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Book {
@@ -48,9 +49,9 @@ public class Book {
     @Override
     public String toString() {
         return "Book{" +
-                "id=" + id +
-                ", author='" + author + '\'' +
-                ", title='" + title + '\'' +
-                '}';
+            "id=" + id +
+            ", author='" + author + '\'' +
+            ", title='" + title + '\'' +
+            '}';
     }
 }

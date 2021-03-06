@@ -13,7 +13,6 @@ public class JavaLondek4SpringDemoApplication {
         SpringApplication.run(JavaLondek4SpringDemoApplication.class, args);
     }
 
-
     public static void dependencyInjectionFAQ() {
         MyRepository myRepository = new MyRepository();
         MyService myService = new MyService(myRepository); // dependency injection

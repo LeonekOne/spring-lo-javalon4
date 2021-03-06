@@ -16,16 +16,16 @@ public class MyFirstRestController {
 
     private final MyService myService;
 
-     @Autowired // choose one way to crate Spring Bean!!!
-     // if only one way of creation exists @Autowired is not necessary
-    public MyFirstRestController(MyService myService) {
-        logger.info("my service initialized with correct value :)");
-        this.myService = myService;
+    public MyFirstRestController() {
+        logger.info("my service will be null:(");
+        myService = null;
     }
 
-    public MyFirstRestController() {
-        logger.info("my service will be null :(");
-        myService = null;
+    @Autowired // choose one way to create Spring Bean!!!
+    // if only one way of object creation exists @Autowired is not necessary
+    public MyFirstRestController(MyService myService) {
+        logger.info("my service initialized with correct value:)");
+        this.myService = myService;
     }
 
     @GetMapping("/say-something")
