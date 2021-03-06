@@ -9,7 +9,6 @@ import pl.sda.javalondek4springdemo.repository.BookRepository;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 import static java.util.Objects.nonNull;
 
@@ -105,4 +104,5 @@ public class BookService {
         logger.info("updated book [{}], with changes to apply: [{}]", book, toUpdate);
         return book;
     }
+
 }

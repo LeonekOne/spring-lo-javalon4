@@ -24,11 +24,20 @@ REST
 * JSON
 * CRUD na HTTP
     * hierarchiczne adresy
-    * Read - GET --> \books
-    * Read one - GET --> \books\{id}
-    * Delete - DELETE --> \books\{id}
-    * Create - POST --> \books
-    * Update (replace) - PUT \books\{id}
+    * przedmioty w liczbie mnogiej
+    * Read - GET --> \books - kolekcja
+    * Read one - GET --> \books\{id} - przedmiot
+    * Delete - DELETE --> \books\{id} - przedmiot
+    * Create - POST --> \books - przedmiot
+    * Update (replace) - PUT \books\{id} 
     * Update (partial) - PATCH \books\{id}
 
     * HATEOS --> REST Full
+* Example API:
+  * GET --> \items
+  * GET --> \items\{id}
+  * GET --> \items\categories\{id}
+  
+  * GET --> \categories
+  * GET --> \categories\{id}
+  * GET --> \categories\{id}\items

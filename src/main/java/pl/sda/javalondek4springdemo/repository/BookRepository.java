@@ -29,9 +29,9 @@ public class BookRepository {
 
 
     public List<Book> findAllBooks() {
+
         return books;
     }
-
 
     public boolean deleteBookWithId(Long id) {
         return books.removeIf(book -> book.getId().equals(id));

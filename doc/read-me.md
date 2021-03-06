@@ -70,3 +70,4 @@ git stash list - pokaż co jest na półce (stash jest stosem)
 git stash pop - zdejmij z półki
 git stash apply - zaaplikuj ostatnie zmiany ze stash'a
 git reflog - pokaż dziennik git'a (pomaga przy utraconych commit'ach)
+git merge --abort - przerwanie obecnego procesu merge'owania
