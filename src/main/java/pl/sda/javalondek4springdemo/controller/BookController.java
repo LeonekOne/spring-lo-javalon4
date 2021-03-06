@@ -2,12 +2,7 @@ package pl.sda.javalondek4springdemo.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.sda.javalondek4springdemo.model.Book;
 import pl.sda.javalondek4springdemo.service.BookService;
 
@@ -53,4 +48,29 @@ public class BookController {
 
         return bookService.saveBook(toSave);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteBookById(@PathVariable("id") Long id) {
+        logger.info("deleting book by id: [{}]", id);
+        bookService.deleteBookById(id);
+    }
+
+
+    // update replace
+    @PutMapping("/{id}")
+    public Book replaceBook(@PathVariable("id") Long id, @RequestBody Book toReplace) {
+        //FIXME
+        logger.info("replacing book with id: [{}] new one: [{}]", id, toReplace);
+        return bookService.replaceBook(id, toReplace);
+    }
+
+
+
+    // update partial
+    @PatchMapping("/{id}")
+    public Book updateBook(@PathVariable("id") Long id, @RequestBody Book toUpdate) {
+        logger.info("updating book with id: [{}] new attributes: [{}]", id,  toUpdate);
+        return bookService.updateBookWithAttributes(id, toUpdate);
+    }
+
 }

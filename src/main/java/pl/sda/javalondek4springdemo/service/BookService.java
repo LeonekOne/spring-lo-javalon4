@@ -9,6 +9,9 @@ import pl.sda.javalondek4springdemo.repository.BookRepository;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+
+import static java.util.Objects.nonNull;
 
 @Service
 public class BookService {
@@ -34,16 +37,22 @@ public class BookService {
     public Book findBookById(Long id) {
         Objects.requireNonNull(id, "id parameter mustn't be null!!!");
 
-        var result = bookRepository.findAllBooks()
-            .stream()
-            .filter(book -> book.getId().equals(id))
-            .findFirst()
-            .orElseThrow(() -> new BookNotFoundException(String.format("No book with id:[%d]", id)));
+        var result = findBookByIdFromRepository(id);
 
         logger.info("book found for id: [{}] is: [{}]", id, result);
 
         return result;
     }
+
+
+    private Book findBookByIdFromRepository(Long id) {
+        return bookRepository.findAllBooks()
+                .stream()
+                .filter(book -> book.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new BookNotFoundException(String.format("No book with id:[%d]", id)));
+    }
+
 
     public Book saveBook(Book toSave) {
 
@@ -61,5 +70,39 @@ public class BookService {
         logger.info("saved book: [{}]", toSave);
 
         return toSave;
+    }
+
+    public boolean deleteBookById(Long id) {
+        boolean result = bookRepository.deleteBookWithId(id);
+        logger.info("Trying to delete book with id: [{}], result: [{}]", id, result);
+        // FIXME
+        return false;
+    }
+
+    // Transactional
+    public Book replaceBook(Long id, Book toReplace) {
+        Book book = findBookByIdFromRepository(id);
+
+        toReplace.setId(id);
+        bookRepository.findAllBooks().removeIf(book1 -> book1.getId().equals(id));
+        bookRepository.findAllBooks().add(toReplace);
+        logger.info("replacing book [{}] with new one [{}]", book, toReplace);
+        return toReplace;
+    }
+
+
+    public Book updateBookWithAttributes(Long id, Book toUpdate) {
+        Book book = findBookByIdFromRepository(id);
+
+        if (nonNull(toUpdate.getAuthor())) {
+            book.setAuthor(toUpdate.getAuthor());
+        }
+
+        if (nonNull(toUpdate.getTitle())) {
+            book.setTitle(toUpdate.getTitle());
+        }
+
+        logger.info("updated book [{}], with changes to apply: [{}]", book, toUpdate);
+        return book;
     }
 }
