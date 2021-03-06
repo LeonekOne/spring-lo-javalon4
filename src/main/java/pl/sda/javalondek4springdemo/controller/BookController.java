@@ -2,6 +2,7 @@ package pl.sda.javalondek4springdemo.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.sda.javalondek4springdemo.model.Book;
 import pl.sda.javalondek4springdemo.service.BookService;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -51,10 +53,12 @@ public class BookController {
     }
 
     @PostMapping
-    public Book addBook(@RequestBody Book toSave) {
+    public ResponseEntity<Book> addBook(@RequestBody Book toSave) {
         logger.info("adding book: [{}]", toSave);
 
-        return bookService.saveBook(toSave);
+        var newBook =  bookService.saveBook(toSave);
+        return ResponseEntity.created(URI.create("books/" + newBook.getId()))
+                .body(newBook);
     }
 
     @DeleteMapping("/{id}")
