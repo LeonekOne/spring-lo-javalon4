@@ -56,4 +56,21 @@ public class BookController {
     }
 
 
+    // update replace
+    @PutMapping
+    public Book replaceBook(@RequestBody Book toReplace) {
+        //FIXME
+        logger.info("replacing book with new one: [{}]", toReplace);
+        return bookService.replaceBook(toReplace);
+    }
+
+
+
+    // update partial
+    @PatchMapping
+    public Book updateBook(@RequestBody Book toUpdate) {
+        logger.info("updating book with new attributes: [{}]", toUpdate);
+        return bookService.updateBookWithAttributes(toUpdate);
+    }
+
 }

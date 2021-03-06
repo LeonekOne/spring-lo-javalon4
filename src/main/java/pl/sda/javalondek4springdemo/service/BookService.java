@@ -69,4 +69,10 @@ public class BookService {
         // FIXME
         return false;
     }
+
+    public Book replaceBook(Book toReplace) {
+    }
+
+    public Book updateBookWithAttributes(Book toUpdate) {
+    }
 }
