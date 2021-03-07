@@ -56,9 +56,10 @@ public class BookController {
     public ResponseEntity<Book> addBook(@RequestBody Book toSave) {
         logger.info("adding book: [{}]", toSave);
 
-        var newBook =  bookService.saveBook(toSave);
+        var newBook = bookService.saveBook(toSave);
+
         return ResponseEntity.created(URI.create("books/" + newBook.getId()))
-                .body(newBook);
+            .body(newBook);
     }
 
     @DeleteMapping("/{id}")
