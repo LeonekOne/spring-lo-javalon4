@@ -3,6 +3,8 @@ package pl.sda.javalondek4springdemo.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import pl.sda.javalondek4springdemo.converter.BookMapper;
+import pl.sda.javalondek4springdemo.dto.BookDto;
 import pl.sda.javalondek4springdemo.exception.BookNotFoundException;
 import pl.sda.javalondek4springdemo.model.Book;
 import pl.sda.javalondek4springdemo.repository.BookRepository;
@@ -19,8 +21,11 @@ public class BookService {
 
     private final BookRepository bookRepository;
 
-    public BookService(BookRepository bookRepository) {
+    private final BookMapper bookMapper;
+
+    public BookService(BookRepository bookRepository, BookMapper bookMapper) {
         this.bookRepository = bookRepository;
+        this.bookMapper = bookMapper;
     }
 
     public List<Book> findAllBooks() {
@@ -86,12 +91,18 @@ public class BookService {
         return toReplace;
     }
 
-    public Book updateBookWithAttributes(Long id, Book toUpdate) {
+    public Book updateBookWithAttributes(Long id, BookDto toUpdate) {
+
+        Book bookEntityToUpdate = bookMapper.fromDtoToEntity(toUpdate);
         Book book = findBookByIdFromRepository(id);
 
-        if (nonNull(toUpdate.getAuthor())) {
-            book.setAuthor(toUpdate.getAuthor());
+
+        if (nonNull(bookEntityToUpdate.getName())) {
+            book.setName(bookEntityToUpdate.getName());
         }
+
+        if (nonNull(bookEntityToUpdate.getSurname()))
+            book.setSurname();
 
         if (nonNull(toUpdate.getTitle())) {
             book.setTitle(toUpdate.getTitle());

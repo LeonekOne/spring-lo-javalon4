@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.sda.javalondek4springdemo.dto.BookDto;
 import pl.sda.javalondek4springdemo.dto.ExceptionResponse;
 import pl.sda.javalondek4springdemo.exception.BookNotFoundException;
 import pl.sda.javalondek4springdemo.model.Book;
@@ -94,7 +95,7 @@ public class BookController {
 
     // update (partial)
     @PatchMapping("/{id}")
-    public Book updateBook(@PathVariable("id") Long id, @RequestBody Book toUpdate) {
+    public BookDto updateBook(@PathVariable("id") Long id, @RequestBody Book toUpdate) {
         logger.info("updating book with id: [{}] with new attributes: [{}]", id, toUpdate);
 
         return bookService.updateBookWithAttributes(id, toUpdate);
