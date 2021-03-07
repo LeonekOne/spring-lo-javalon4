@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.sda.javalondek4springdemo.dto.BookDto;
 import pl.sda.javalondek4springdemo.dto.ExceptionResponse;
 import pl.sda.javalondek4springdemo.exception.BookNotFoundException;
-import pl.sda.javalondek4springdemo.model.Book;
 import pl.sda.javalondek4springdemo.service.BookService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +42,7 @@ public class BookController {
     }
 
     @GetMapping
-    public List<Book> getAllBooks() {
+    public List<BookDto> getAllBooks() {
 
         logger.info("getAllBooks()");
 
@@ -53,20 +52,20 @@ public class BookController {
     // /books/1
     // /books/101
     @GetMapping("/{id}")
-    public Book getBookById(@PathVariable("id") Long id) {
+    public BookDto getBookById(@PathVariable("id") Long id) {
         logger.info("find book by id: [{}]", id);
 
         return bookService.findBookById(id);
     }
 
     @PostMapping
-    public ResponseEntity<Book> addBook(@RequestBody Book toSave) {
+    public ResponseEntity<BookDto> addBook(@RequestBody BookDto toSave) {
         logger.info("adding book: [{}]", toSave);
 
         var newBook = bookService.saveBook(toSave);
 
         return ResponseEntity.created(URI.create("books/" + newBook.getId()))
-            .body(newBook);
+                .body(newBook);
     }
 
     @DeleteMapping("/{id}")
@@ -87,7 +86,7 @@ public class BookController {
 
     // update (replace)
     @PutMapping("/{id}")
-    public Book replaceBook(@PathVariable("id") Long id, @RequestBody Book toReplace) {
+    public BookDto replaceBook(@PathVariable("id") Long id, @RequestBody BookDto toReplace) {
         logger.info("replacing book with id: [{}] with new one: [{}]", id, toReplace);
 
         return bookService.replaceBook(id, toReplace);
@@ -95,13 +94,13 @@ public class BookController {
 
     // update (partial)
     @PatchMapping("/{id}")
-    public BookDto updateBook(@PathVariable("id") Long id, @RequestBody Book toUpdate) {
+    public BookDto updateBook(@PathVariable("id") Long id, @RequestBody BookDto toUpdate) {
         logger.info("updating book with id: [{}] with new attributes: [{}]", id, toUpdate);
 
         return bookService.updateBookWithAttributes(id, toUpdate);
     }
 
-//    try {
+    //    try {
 //        all methods from current controller
 //    } catch (BookNotFoundException exception) {
 //
@@ -115,12 +114,13 @@ public class BookController {
 
 
         return ResponseEntity.badRequest().body(
-            new ExceptionResponse(LocalDateTime.now(Clock.systemUTC()),
-                HttpStatus.BAD_REQUEST.value(),
-                exception.getClass().getName(),
-                exception.getMessage(),
-                request.getServletPath()
-            )
+                new ExceptionResponse(LocalDateTime.now(Clock.systemUTC()),
+                        HttpStatus.BAD_REQUEST.value(),
+                        exception.getClass().getName(),
+                        exception.getMessage(),
+                        request.getServletPath()
+                )
         );
     }
 }
+
