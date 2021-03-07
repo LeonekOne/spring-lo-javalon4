@@ -11,7 +11,7 @@ import pl.sda.javalondek4springdemo.exception.BookNotFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.Clock;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @RestControllerAdvice
 public class ControllerExceptionHandler {
@@ -20,14 +20,16 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(BookNotFoundException.class)
     public ResponseEntity<ExceptionResponse> handleBookNotFoundException(Exception exception, HttpServletRequest request) {
-        logger.warn("generic exception handler for some unexpected exception has occurred", exception);
+        logger.warn("generic exception handler for some unexpected exception:)", exception);
+
+
         return ResponseEntity.badRequest().body(
-                new ExceptionResponse(LocalDate.now(Clock.systemUTC()),
-                        HttpStatus.BAD_REQUEST.value(),
-                        exception.getClass().getName(),
-                        exception.getMessage(),
-                        request.getServletPath()
-                )
+            new ExceptionResponse(LocalDateTime.now(Clock.systemUTC()),
+                HttpStatus.BAD_REQUEST.value(),
+                exception.getClass().getSimpleName(),
+                exception.getMessage(),
+                request.getServletPath()
+            )
         );
     }
 }

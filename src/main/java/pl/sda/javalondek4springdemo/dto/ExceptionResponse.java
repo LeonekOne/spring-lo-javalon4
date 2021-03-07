@@ -1,10 +1,10 @@
 package pl.sda.javalondek4springdemo.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public final class ExceptionResponse {
 
-    private LocalDate timestamp;
+    private LocalDateTime timestamp;
 
     private int responseStatus;
 
@@ -14,7 +14,7 @@ public final class ExceptionResponse {
 
     private String path;
 
-    public ExceptionResponse(LocalDate timestamp, int responseStatus, String error, String message, String path) {
+    public ExceptionResponse(LocalDateTime timestamp, int responseStatus, String error, String message, String path) {
         this.timestamp = timestamp;
         this.responseStatus = responseStatus;
         this.error = error;
@@ -22,7 +22,7 @@ public final class ExceptionResponse {
         this.path = path;
     }
 
-    public LocalDate getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
@@ -45,11 +45,11 @@ public final class ExceptionResponse {
     @Override
     public String toString() {
         return "ExceptionResponse{" +
-                "timestamp=" + timestamp +
-                ", responseStatus=" + responseStatus +
-                ", error='" + error + '\'' +
-                ", message='" + message + '\'' +
-                ", path='" + path + '\'' +
-                '}';
+            "timestamp=" + timestamp +
+            ", responseStatus=" + responseStatus +
+            ", error='" + error + '\'' +
+            ", message='" + message + '\'' +
+            ", path='" + path + '\'' +
+            '}';
     }
 }

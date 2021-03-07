@@ -58,6 +58,6 @@ public class MyFirstRestController {
     public void throwException() {
         logger.info("throwing exception from controller...");
 
-        throw new BookNotFoundException("new message hehe");
+        throw new BookNotFoundException("no message");
     }
 }
