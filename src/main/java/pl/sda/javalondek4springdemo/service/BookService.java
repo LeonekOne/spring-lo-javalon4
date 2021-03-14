@@ -32,9 +32,9 @@ public class BookService {
     public List<BookDto> findAllBooks() {
 
         var result = bookRepository.findAllBooks()
-                .stream()
-                .map(book -> bookMapper.fromEntityToDto(book))
-                .collect(toList());
+            .stream()
+            .map(book -> bookMapper.fromEntityToDto(book))
+            .collect(toList());
 
         logger.info("number of found books: [{}]", result.size());
         logger.debug("result: {}", result);
@@ -53,10 +53,10 @@ public class BookService {
 
     private Book findBookByIdFromRepository(Long id) {
         return bookRepository.findAllBooks()
-                .stream()
-                .filter(book -> book.getId().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new BookNotFoundException(String.format("No book with id:[%d]", id)));
+            .stream()
+            .filter(book -> book.getId().equals(id))
+            .findFirst()
+            .orElseThrow(() -> new BookNotFoundException(String.format("No book with id:[%d]", id)));
     }
 
     public BookDto saveBook(BookDto toSave) {
@@ -65,10 +65,10 @@ public class BookService {
         // add book with id (max id + 1)
         // return book with id
         Long currentMaxId = bookRepository.findAllBooks()
-                .stream()
-                .mapToLong(value -> value.getId())
-                .max()
-                .orElse(1);
+            .stream()
+            .mapToLong(value -> value.getId())
+            .max()
+            .orElse(1);
         Book entityToSave = bookMapper.fromDtoToEntity(toSave);
         entityToSave.setId(currentMaxId + 1);
         bookRepository.findAllBooks().add(entityToSave);
@@ -88,12 +88,13 @@ public class BookService {
     public BookDto replaceBook(Long id, BookDto toReplace) {
         Book book = findBookByIdFromRepository(id);
 
-        toReplace.setId(id);
+        Book bookMapped = bookMapper.fromDtoToEntity(toReplace);
+        bookMapped.setId(id);
         bookRepository.findAllBooks().removeIf(book1 -> book1.getId().equals(id));
-        bookRepository.findAllBooks().add(toReplace);
-
+        bookRepository.findAllBooks().add(bookMapped);
         logger.info("replacing book [{}] with new one [{}]", book, toReplace);
-        return toReplace;
+
+        return bookMapper.fromEntityToDto(bookMapped);
     }
 
     public BookDto updateBookWithAttributes(Long id, BookDto toUpdate) {
@@ -118,4 +119,3 @@ public class BookService {
         return bookMapper.fromEntityToDto(book);
     }
 }
-

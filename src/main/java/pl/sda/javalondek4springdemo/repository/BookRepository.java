@@ -3,6 +3,7 @@ package pl.sda.javalondek4springdemo.repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sda.javalondek4springdemo.model.Book;
 
 import java.util.ArrayList;
@@ -13,27 +14,27 @@ public class BookRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(BookRepository.class);
 
-    private List<Book> books;
+    private final BookCrudRepository bookCrudRepository;
 
-    public BookRepository() {
-        List<Book> someBooks = List.of(
-            new Book(1L, "Henryk Sienkiewicz", "Potop"),
-            new Book(2L, "Henryk Sienkiewicz", "Pan Wołodyjowski"),
-            new Book(3L, "Henryk Sienkiewicz", "Quo Vadis")
-        );
-
-        this.books = new ArrayList<>(someBooks);
-
-        logger.info("book repository initialized with books: {}", books);
+    public BookRepository(BookCrudRepository bookCrudRepository) {
+        this.bookCrudRepository = bookCrudRepository;
     }
-
 
     public List<Book> findAllBooks() {
 
-        return books;
+        var result = bookCrudRepository.findAllBooks();
+        logger.info("number of found books: [{}]", result.size());
+        logger.debug("found books: {}", result);
+        return result;
     }
 
+    @Transactional
     public boolean deleteBookWithId(Long id) {
-        return books.removeIf(book -> book.getId().equals(id));
+        boolean exists = bookCrudRepository.existsById(id);
+        if (exists) {
+            bookCrudRepository.deleteById(id);
+        }
+
+        return exists;
     }
 }

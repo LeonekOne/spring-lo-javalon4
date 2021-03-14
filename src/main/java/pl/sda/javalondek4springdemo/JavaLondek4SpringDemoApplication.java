@@ -6,7 +6,7 @@ import pl.sda.javalondek4springdemo.controller.MyFirstRestController;
 import pl.sda.javalondek4springdemo.repository.MyRepository;
 import pl.sda.javalondek4springdemo.service.MyService;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "pl.sda")
 public class JavaLondek4SpringDemoApplication {
 
     public static void main(String[] args) {

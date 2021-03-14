@@ -1,16 +1,22 @@
 package pl.sda.javalondek4springdemo.model;
 
+import javax.persistence.*;
 
-
+@Entity(name = "books")
+@Table(name = "BOOKS")
 public class Book {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "imie")
     private String name;
 
+    @Column
     private String surname;
 
-
+    @Column(name = "tytuł")
     private String title;
 
     public Book(Long id, String name, String surname, String title) {
@@ -47,8 +53,6 @@ public class Book {
         this.id = id;
     }
 
-
-
     public String getTitle() {
         return title;
     }
@@ -60,8 +64,10 @@ public class Book {
     @Override
     public String toString() {
         return "Book{" +
-            "id=" + id +
-            ", title='" + title + '\'' +
-            '}';
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", title='" + title + '\'' +
+                '}';
     }
 }

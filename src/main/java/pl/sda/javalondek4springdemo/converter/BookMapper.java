@@ -8,7 +8,6 @@ import pl.sda.javalondek4springdemo.model.Book;
 
 import static java.util.Objects.nonNull;
 
-@Component
 public class BookMapper implements Mapper<Book, BookDto> {
 
     private static final String space = " ";
@@ -44,4 +43,3 @@ public class BookMapper implements Mapper<Book, BookDto> {
         return result;
     }
 }
-

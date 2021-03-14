@@ -34,9 +34,9 @@ public final class BookDto {
     @Override
     public String toString() {
         return "BookDto{" +
-                "id=" + id +
-                ", author='" + author + '\'' +
-                ", title='" + title + '\'' +
-                '}';
+            "id=" + id +
+            ", author='" + author + '\'' +
+            ", title='" + title + '\'' +
+            '}';
     }
 }
