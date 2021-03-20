@@ -2,6 +2,7 @@ package pl.sda.javalondek4springdemo.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "COURSES")
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
