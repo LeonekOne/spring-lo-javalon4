@@ -6,22 +6,22 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-@Profile({"!prod", "!test"})
+@Profile({"prod", "test"})
 @Service
-public class DevelopersHsmModule implements HsmModule, CommandLineRunner {
+public class HardwareHsmModule implements HsmModule, CommandLineRunner {
 
-    private static final Logger logger = LoggerFactory.getLogger(DevelopersHsmModule.class);
+    private static final Logger logger = LoggerFactory.getLogger(HardwareHsmModule.class);
 
     @Override
     public String encryptPassword(String password) {
+        logger.info("very complex operation with real HSM device");
+        logger.info("trying to connect to real device....");
 
-        logger.info("using developers' version of hsm module");
-
-        return password.toUpperCase();
+        return null;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        logger.info("hsm module: [{}]", DevelopersHsmModule.class.getSimpleName());
+        logger.info("hsm module: [{}}", HardwareHsmModule.class.getSimpleName());
     }
 }

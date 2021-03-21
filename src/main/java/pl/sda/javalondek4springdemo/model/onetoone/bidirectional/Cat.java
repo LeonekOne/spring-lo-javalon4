@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Profile;
 
 import javax.persistence.*;
 
-@Profile("onetoone-bidirectional")
+@Profile("onetoone-birectional")
 @Entity
 public class Cat {
 
@@ -15,6 +15,7 @@ public class Cat {
     private String name;
 
     @OneToOne
+    @JoinColumn(name = "MY_OWNER_ID", referencedColumnName = "ID")
     private Owner owner;
 
     public Cat() {

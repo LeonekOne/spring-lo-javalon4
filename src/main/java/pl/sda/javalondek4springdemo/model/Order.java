@@ -1,6 +1,12 @@
 package pl.sda.javalondek4springdemo.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "ORDERS")
@@ -14,7 +20,7 @@ public class Order {
 
 //    @ManyToOne
 //    @JoinColumn(name = "CLIENT_ID", referencedColumnName = "ID")
-//    private  Client client;
+//    private Client client;
 
     public Order() {
     }
@@ -35,3 +41,4 @@ public class Order {
         this.item = item;
     }
 }
+

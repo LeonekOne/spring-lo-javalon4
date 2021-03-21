@@ -2,9 +2,14 @@ package pl.sda.javalondek4springdemo.model.onetoone.bidirectional;
 
 import org.springframework.context.annotation.Profile;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-@Profile("onetoone-bidirectional")
+@Profile("onetoone-birectional")
 @Entity
 public class Owner {
 
@@ -16,7 +21,7 @@ public class Owner {
 
     private String lastName;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "owner")
     private Cat cat;
 
     public Owner() {
