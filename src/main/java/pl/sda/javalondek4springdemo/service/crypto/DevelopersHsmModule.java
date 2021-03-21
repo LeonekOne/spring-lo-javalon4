@@ -14,7 +14,7 @@ public class DevelopersHsmModule implements HsmModule, CommandLineRunner {
 
     @Override
     public String encryptPassword(String password) {
-        logger.info("using developers' verion of hsm module");
+        logger.info("using developers' version of hsm module");
         return password.toUpperCase();
     }
 
