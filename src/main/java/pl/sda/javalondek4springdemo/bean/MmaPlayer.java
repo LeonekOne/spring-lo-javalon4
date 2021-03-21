@@ -4,11 +4,10 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component("hogan")
-//@Primary
+@Primary
 public class MmaPlayer implements Player {
     @Override
     public void play() {
-        System.out.println("I'm MMA player");
-
+        System.out.println("I'm mma player");
     }
 }

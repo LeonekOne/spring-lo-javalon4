@@ -11,12 +11,12 @@ public class AllPlayersTeam {
 
     private static final Logger logger = LoggerFactory.getLogger(AllPlayersTeam.class);
 
-    private Map<String, Player> allPlayers;
+    private final Map<String, Player> allPlayers;
+
 
     public AllPlayersTeam(Map<String, Player> allPlayers) {
         this.allPlayers = allPlayers;
 
         allPlayers.keySet().forEach(beanName -> logger.info("bean name: [{}]", beanName));
     }
-
 }
