@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
-import pl.sda.javalondek4springdemo.repository.onetoone.bidirectional.CatRepository;
-import pl.sda.javalondek4springdemo.repository.onetoone.bidirectional.OwnerRepository;
+import pl.sda.javalondek4springdemo.repository.onetoone.CatRepository;
+import pl.sda.javalondek4springdemo.repository.onetoone.OwnerRepository;
 
 @Profile("onetoone-birectional")
 @Component

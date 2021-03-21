@@ -1,18 +1,12 @@
-package pl.sda.javalondek4springdemo.model.onetoone.bidirectional;
+package pl.sda.javalondek4springdemo.model.onetomany.bidirectional;
 
-import org.springframework.context.annotation.Profile;
+import javax.persistence.*;
+import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-@Entity
 // Columns in db:
-// ID, FIRST_NAME, LAST_NAME
-// no CAT column!!!
+// ID, FIRST_NAME, LAST_NAME, CAT_ID
+@Entity(name = "OwnersWithManyCats")
+@Table(name = "OWNERS_WITH_MANY_CATS")
 public class Owner {
 
     @Id
@@ -23,9 +17,8 @@ public class Owner {
 
     private String lastName;
 
-    // mappedBy is necessary to create foreign key in CAT table which refers to primary key of OWNER table
-    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "owner")
-    private Cat cat;
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "owner")
+    private List<Cat> cat;
 
     public Owner() {
     }
@@ -54,11 +47,21 @@ public class Owner {
         this.lastName = lastName;
     }
 
-    public Cat getCat() {
+    public List<Cat> getCat() {
         return cat;
     }
 
-    public void setCat(Cat cat) {
+    public void setCat(List<Cat> cat) {
         this.cat = cat;
+    }
+
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "identifier=" + identifier +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", cat=" + cat +
+                '}';
     }
 }

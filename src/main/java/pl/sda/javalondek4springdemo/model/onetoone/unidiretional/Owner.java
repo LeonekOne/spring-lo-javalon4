@@ -1,18 +1,18 @@
-package pl.sda.javalondek4springdemo.model.onetoone.bidirectional;
-
-import org.springframework.context.annotation.Profile;
+package pl.sda.javalondek4springdemo.model.onetoone.unidiretional;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-@Entity
 // Columns in db:
-// ID, FIRST_NAME, LAST_NAME
-// no CAT column!!!
+// ID, FIRST_NAME, LAST_NAME, CAT_ID
+@Entity(name = "OwnerUnidirectional")
+@Table(name = "OWNERS")
 public class Owner {
 
     @Id
@@ -23,8 +23,8 @@ public class Owner {
 
     private String lastName;
 
-    // mappedBy is necessary to create foreign key in CAT table which refers to primary key of OWNER table
-    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "owner")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "CAT_ID", referencedColumnName = "ID")
     private Cat cat;
 
     public Owner() {

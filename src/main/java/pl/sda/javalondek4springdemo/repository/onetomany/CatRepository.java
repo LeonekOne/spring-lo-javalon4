@@ -1,9 +1,9 @@
-package pl.sda.javalondek4springdemo.repository.onetoone.bidirectional;
+package pl.sda.javalondek4springdemo.repository.onetomany;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.repository.CrudRepository;
-import pl.sda.javalondek4springdemo.model.onetoone.bidirectional.Cat;
+import pl.sda.javalondek4springdemo.model.onetomany.bidirectional.Cat;
 
-@Profile("onetoone-birectional")
+@Profile("onetomany-bidirectional")
 public interface CatRepository extends CrudRepository<Cat, Long> {
 }
