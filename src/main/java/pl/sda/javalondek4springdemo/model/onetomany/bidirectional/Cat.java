@@ -42,4 +42,20 @@ public class Cat {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

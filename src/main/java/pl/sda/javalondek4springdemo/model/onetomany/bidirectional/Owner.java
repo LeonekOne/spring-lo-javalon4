@@ -60,4 +60,14 @@ public class Owner {
     public void setCat(List<Cat> cat) {
         this.cat = cat;
     }
+
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "identifier=" + identifier +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", cat=" + cat +
+                '}';
+    }
 }
