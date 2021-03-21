@@ -2,11 +2,7 @@ package pl.sda.javalondek4springdemo.model.onetoone.bidirectional;
 
 import org.springframework.context.annotation.Profile;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Profile("onetoone-birectional")
 @Entity
@@ -19,6 +15,7 @@ public class Cat {
     private String name;
 
     @OneToOne
+    @JoinColumn(name = "MY_OWNER_ID", referencedColumnName = "ID")
     private Owner owner;
 
     public Cat() {

@@ -21,7 +21,7 @@ public class Owner {
 
     private String lastName;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "owner")
     private Cat cat;
 
     public Owner() {
