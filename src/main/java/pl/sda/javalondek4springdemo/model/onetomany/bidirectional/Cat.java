@@ -27,6 +27,14 @@ public class Cat {
     public Cat() {
     }
 
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
     public Long getId() {
         return id;
     }
@@ -43,19 +51,11 @@ public class Cat {
         this.name = name;
     }
 
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Owner owner) {
-        this.owner = owner;
-    }
-
     @Override
     public String toString() {
         return "Cat{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+            "id=" + id +
+            ", name='" + name + '\'' +
+            '}';
     }
 }

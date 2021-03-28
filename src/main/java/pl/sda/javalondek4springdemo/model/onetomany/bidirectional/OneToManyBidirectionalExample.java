@@ -8,14 +8,15 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.sda.javalondek4springdemo.repository.onetomany.CatRepository;
 import pl.sda.javalondek4springdemo.repository.onetomany.OwnerRepository;
 
-import javax.persistence.Table;
 import java.util.List;
 
-@Transactional
 @Component
 public class OneToManyBidirectionalExample implements CommandLineRunner {
+
     private static final Logger logger = LoggerFactory.getLogger(OneToManyBidirectionalExample.class);
+
     private final OwnerRepository ownerRepository;
+
     private final CatRepository catRepository;
 
     public OneToManyBidirectionalExample(OwnerRepository ownerRepository, CatRepository catRepository) {
@@ -23,9 +24,9 @@ public class OneToManyBidirectionalExample implements CommandLineRunner {
         this.catRepository = catRepository;
     }
 
+    @Transactional
     @Override
     public void run(String... args) throws Exception {
-
         Cat white = new Cat();
         white.setName("white");
 
@@ -42,12 +43,11 @@ public class OneToManyBidirectionalExample implements CommandLineRunner {
         ownerRepository.save(stranger);
 
         ownerRepository.findAll()
-                .forEach(owner ->
-                {
-                    List<Cat> cats = owner.getCat();
-                    logger.info("owner [{}] and cats: [{}]", owner, cats);
-                    logger.info("owner id: [{}]", owner.getIdentifier());
-                });
-
+            .forEach(owner -> {
+//                List<Cat> cats = owner.getCat();
+//                logger.info("owner [{}] and cats: [{}]", owner, cats);
+                logger.info("owner id: [{}]", owner.getIdentifier());
+                logger.info("cats: [{}]", owner.getCat());
+            });
     }
 }
