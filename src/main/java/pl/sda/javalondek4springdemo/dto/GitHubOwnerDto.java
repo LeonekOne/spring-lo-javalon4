@@ -36,8 +36,8 @@ public class GitHubOwnerDto {
     @Override
     public String toString() {
         return "GitHubOwnerDto{" +
-                "login='" + login + '\'' +
-                ", avatarUrl='" + avatarUrl + '\'' +
-                '}';
+            "login='" + login + '\'' +
+            ", avatarUrl='" + avatarUrl + '\'' +
+            '}';
     }
 }

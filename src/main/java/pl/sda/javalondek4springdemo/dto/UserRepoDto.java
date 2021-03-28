@@ -3,7 +3,6 @@ package pl.sda.javalondek4springdemo.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UserRepoDto {
-
     private Long id;
 
     private String name;
@@ -21,6 +20,16 @@ public class UserRepoDto {
         this.name = name;
         this.fullName = fullName;
         this.owner = owner;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRepoDto{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", fullName='" + fullName + '\'' +
+            ", owner=" + owner +
+            '}';
     }
 
     public Long getId() {
@@ -53,15 +62,5 @@ public class UserRepoDto {
 
     public void setOwner(GitHubOwnerDto owner) {
         this.owner = owner;
-    }
-
-    @Override
-    public String toString() {
-        return "UserRepoDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", owner=" + owner +
-                '}';
     }
 }

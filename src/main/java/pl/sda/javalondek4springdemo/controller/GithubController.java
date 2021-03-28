@@ -16,16 +16,15 @@ public class GithubController {
 
     public GithubController(GithubRestService githubRestService) {
         this.githubRestService = githubRestService;
-
     }
 
     @GetMapping("/my-repos-as-string")
-    String myRepos() {
-        return githubRestService.findMyRepoAsString();
+    String myRespos() {
+        return githubRestService.findMyReposAsString();
     }
 
     @GetMapping("/my-repos")
-    List<UserRepoDto> myReposAsColection() {
+    List<UserRepoDto> myReposAsCollection() {
         return githubRestService.findInfoOfMyRepos();
     }
 
@@ -33,8 +32,4 @@ public class GithubController {
     UserRepoDto[] myReposAsArray() {
         return githubRestService.findInfoOfMyReposAsArray();
     }
-
-
-
-
 }
