@@ -16,7 +16,7 @@ public class GithubRestService {
 
     private final String gitHubUser;
 
-    public GithubRestService(RestTemplate restTemplate, @Value("github.user") String gitHubUser) {
+    public GithubRestService(RestTemplate restTemplate, @Value("${github.user}") String gitHubUser) {
         this.restTemplate = restTemplate;
         this.gitHubUser = gitHubUser;
 
