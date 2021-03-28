@@ -16,10 +16,12 @@ public class GithubRestService {
 
     private final String gitHubUser;
 
-    public GithubRestService(RestTemplate restTemplate, @Value("${github.user}") String gitHubUser) {
+    public GithubRestService(RestTemplate restTemplate, @Value("${github.user}") String gitHubUser,
+                             @Value("${magic.value}") int magicValue) {
         this.restTemplate = restTemplate;
         this.gitHubUser = gitHubUser;
 
         logger.info("github user: [{}]", gitHubUser);
+        logger.info("magic value: [{}]", magicValue);
     }
 }
